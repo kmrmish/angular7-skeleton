@@ -18,3 +18,7 @@ export const environment = {
 export const getApiHostName = () => {
   return 'https://api.github.com';
 };
+
+export const getJsonPath = () => {
+  return '../../assets/json';
+};

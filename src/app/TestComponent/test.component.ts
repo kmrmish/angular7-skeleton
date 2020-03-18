@@ -8,8 +8,12 @@ import { HttpWrapperService } from '../shared/services/http.wrapper.service';
 })
 export class TestComponent implements OnInit{
     title = 'Test Component';
+
     endPoint = 'users/kmrmish';
+    jsonFileName : string = 'SampleJson.json';
+    
     userData : any;
+    jsonData : any;
 
     constructor(
       private httpWrapper: HttpWrapperService
@@ -18,6 +22,12 @@ export class TestComponent implements OnInit{
     ngOnInit() {
       this.httpWrapper.get(this.endPoint).subscribe((data) => {
           this.userData = data;
+      }, (error) => {
+          console.log(error);
+      });
+
+      this.httpWrapper.getJSON(this.jsonFileName).subscribe((data) => {
+        this.jsonData = data;
       }, (error) => {
           console.log(error);
       });

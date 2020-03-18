@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { getApiHostName } from '../../../environments/environment';
+import { getApiHostName, getJsonPath } from '../../../environments/environment';
 import { Observable } from 'rxjs';
 
 
@@ -11,11 +11,13 @@ export class HttpWrapperService {
 
     defaultOptions: any;
     hostName: string;
+    jsonPath: string;
 
     constructor(
         private httpClient: HttpClient
     ) {
        this.hostName = getApiHostName();
+       this.jsonPath = getJsonPath();
     }
 
     public post(endPoint, data: any): Observable<any> {
@@ -41,6 +43,11 @@ export class HttpWrapperService {
     delete(endPoint, id: number) {
         return this.httpClient
         .delete(`${this.hostName}/${endPoint}/${id}`);
+    }
+
+    /* jsonUrl: ../../assets/SampleJson.json */
+    public getJSON(jsonFileName): Observable<any> {
+        return this.httpClient.get(`${this.jsonPath}/${jsonFileName}`);
     }
 
 }
