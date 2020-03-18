@@ -16,5 +16,5 @@ export const environment = {
 // import 'zone.js/dist/zone-error';  // Included with Angular CLI.
 
 export const getApiHostName = () => {
-  return 'http://localhost:4200';
+  return 'https://api.github.com';
 };

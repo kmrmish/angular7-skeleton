@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpWrapperService } from '../shared/services/http.wrapper.service';
 
 @Component({
   selector: 'app-test',
@@ -7,10 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TestComponent implements OnInit{
     title = 'Test Component';
+    endPoint = 'users/kmrmish';
+    userData : any;
 
-    constructor() { }
+    constructor(
+      private httpWrapper: HttpWrapperService
+    ) { }
 
     ngOnInit() {
-
+      this.httpWrapper.get(this.endPoint).subscribe((data) => {
+          this.userData = data;
+      }, (error) => {
+          console.log(error);
+      });
     }
 }
